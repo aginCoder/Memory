@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <title>Tặng Người Yêu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Trang nhập mật khẩu -->
+    <div id="passwordPage" class="page active">
+        <div class="galaxy-background"></div>
+        <div class="password-container">
+            <div class="password-form">
+                <h1 class="form-title">Ngày Ta Yêu Nhau</h1>
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        class="password-input" 
+                        placeholder="Nhập 4 số" 
+                        maxlength="4"
+                        inputmode="numeric"
+                        readonly
+                    >
+                </div>
+                <div id="errorMessage" class="error-message"></div>
+                
+                <!-- Bàn phím số -->
+                <div class="keyboard-container">
+                    <div class="keyboard">
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="1">1</button>
+                            <button class="key-btn" data-key="2">2</button>
+                            <button class="key-btn" data-key="3">3</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="4">4</button>
+                            <button class="key-btn" data-key="5">5</button>
+                            <button class="key-btn" data-key="6">6</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn" data-key="7">7</button>
+                            <button class="key-btn" data-key="8">8</button>
+                            <button class="key-btn" data-key="9">9</button>
+                        </div>
+                        <div class="keyboard-row">
+                            <button class="key-btn delete-btn" id="deleteBtn">← Xóa</button>
+                            <button class="key-btn" data-key="0">0</button>
+                            <button class="key-btn clear-btn" id="clearBtn">✕ Xóa hết</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="submitBtn" class="submit-btn">Vào</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trang hiển thị nội dung -->
+    <div id="contentPage" class="page">
+        <div class="content-container">
+            <!-- Bên trái: Nội dung (6/10) -->
+            <div class="content-left">
+                <div class="content-box">
+                    <h2 id="contentTitle">Lời Yêu</h2>
+                    <p id="contentText">
+                        Anh yêu em rất nhiều. Mỗi ngày với em là một ngày đặc biệt. 
+                        Cảm ơn em vì đã xuất hiện trong cuộc đời anh. 
+                        Em là người mà anh muốn dành cả tâm sự cho.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bên phải: Hình ảnh (4/10) -->
+            <div class="image-right">
+                <div class="image-slider">
+                    <div class="image-stack">
+                        <div class="image-card active" style="background: linear-gradient(135deg, #FF6B9D, #C06C84); z-index: 5;">
+                            <span class="image-placeholder"><img src="./IMAGE/z7474947887799_5fc5d328163ed4a91addfeea4fe4b102.jpg" alt=""></span>
+                        </div>
+                        <div class="image-card" style="background: linear-gradient(135deg, #6C5CE7, #A29BFE); z-index: 4;">
+                            <span class="image-placeholder"><img src="./IMAGE/z7474947888741_66993fc2b0ea3a0c9d9d25683e2bfa41.jpg" alt=""></span>
+                        </div>
+                        <div class="image-card" style="background: linear-gradient(135deg, #00B894, #55EFC4); z-index: 3;">
+                            <span class="image-placeholder"><img src="./IMAGE/z7474947891561_77eeab88ff9b1a8de01d61f7d5e544a3.jpg" alt=""></span>
+                        </div>
+                        <div class="image-card" style="background: linear-gradient(135deg, #FDCB6E, #FFB84D); z-index: 2;">
+                            <span class="image-placeholder"><img src="./IMAGE/z7474947898561_cedd293445375e3a915e23b4159f3536.jpg" alt=""></span>
+                        </div>
+                        <div class="image-card" style="background: linear-gradient(135deg, #FF7675, #FF5252); z-index: 1;">
+                            <span class="image-placeholder"><img src="./IMAGE/z7474947904325_da4ef2d71aebcd043bf7ed436d2a7d45.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="swipe-hint">Vuốt nhẹ →</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút quay lại -->
+        <button id="backBtn" class="back-btn">← Quay lại</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

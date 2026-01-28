@@ -1,0 +1,655 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* Galaxy Background */
+.galaxy-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(255, 100, 200, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(100, 200, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(200, 100, 255, 0.1) 0%, transparent 50%);
+    background-color: #0a0e27;
+    animation: galaxyAnimation 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+.galaxy-background::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, white, rgba(255,255,255,.2)),
+        radial-gradient(2px 2px at 60px 70px, white, rgba(255,255,255,.2)),
+        radial-gradient(1px 1px at 50px 50px, white, rgba(255,255,255,.2)),
+        radial-gradient(1px 1px at 130px 80px, white, rgba(255,255,255,.2)),
+        radial-gradient(2px 2px at 90px 10px, white, rgba(255,255,255,.2));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkleStar 5s ease-in-out infinite;
+}
+
+@keyframes galaxyAnimation {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes twinkleStar {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Page Transitions */
+.page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 10;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Password Page */
+#passwordPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.password-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 350px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+}
+
+.form-title {
+    font-size: 28px;
+    color: #ff4d6d;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.password-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: #ff4d6d;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+}
+
+.error-message {
+    color: #ff4d6d;
+    font-size: 14px;
+    margin-bottom: 15px;
+    min-height: 20px;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Bàn phím số */
+.keyboard-container {
+    margin: 20px 0;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) inset;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.key-btn {
+    flex: 1;
+    max-width: 70px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+.key-btn:hover {
+    background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.key-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #e8e8e8 0%, #d8d8d8 100%);
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #ffa5a5 0%, #ff7c7c 100%);
+    color: white;
+    border-color: #ff6b6b;
+    flex: 1.2;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #ff9191 0%, #ff6868 100%);
+}
+
+.delete-btn:active {
+    background: linear-gradient(135deg, #ff7c7c 0%, #ff5a5a 100%);
+}
+
+.clear-btn {
+    background: linear-gradient(135deg, #ff8c94 0%, #ff5757 100%);
+    color: white;
+    border-color: #ff5757;
+    flex: 1.2;
+}
+
+.clear-btn:hover {
+    background: linear-gradient(135deg, #ff7a82 0%, #ff4545 100%);
+}
+
+.clear-btn:active {
+    background: linear-gradient(135deg, #ff5757 0%, #ff3333 100%);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #ff4d6d, #ff6b9d);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Content Page */
+#contentPage {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+.content-container {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Bên trái - Nội dung (60%) */
+.content-left {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.content-box h2 {
+    color: #764ba2;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content-box p {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Bên phải - Ảnh (40%) */
+.image-right {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.image-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.image-card.active {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+}
+
+.image-card:not(.active) {
+    transform: translateY(20px) translateX(10px) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.image-card:active {
+    cursor: grabbing;
+}
+
+.image-placeholder {
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.swipe-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    animation: slideHint 2s ease-in-out infinite;
+}
+
+@keyframes slideHint {
+    0%, 100% { transform: translateX(0); opacity: 0.7; }
+    50% { transform: translateX(10px); opacity: 1; }
+}
+
+.back-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .content-container {
+        gap: 20px;
+    }
+
+    .content-left {
+        flex: 5;
+    }
+
+    .image-right {
+        flex: 5;
+    }
+
+    .content-box {
+        padding: 30px;
+    }
+
+    .image-slider {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Password Page */
+    .password-form {
+        padding: 30px 20px;
+        max-width: 95%;
+    }
+
+    .form-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .password-input {
+        padding: 12px;
+        font-size: 20px;
+        letter-spacing: 12px;
+    }
+
+    .keyboard-container {
+        margin: 15px 0;
+    }
+
+    .keyboard {
+        padding: 15px;
+        gap: 8px;
+    }
+
+    .keyboard-row {
+        gap: 6px;
+    }
+
+    .key-btn {
+        max-width: 60px;
+        padding: 12px 8px;
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Content Page */
+    #contentPage {
+        padding: 20px 15px;
+    }
+
+    .content-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .content-left, .image-right {
+        flex: none;
+        width: 100%;
+    }
+
+    .content-box {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .content-box h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .content-box p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .image-slider {
+        height: 280px;
+    }
+
+    .swipe-hint {
+        font-size: 12px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .back-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+        bottom: 10px;
+        left: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Password Page */
+    .password-form {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+
+    .form-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    .password-input {
+        padding: 10px;
+        font-size: 18px;
+        letter-spacing: 10px;
+    }
+
+    .error-message {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .keyboard-container {
+        margin: 12px 0;
+    }
+
+    .keyboard {
+        padding: 12px;
+        gap: 6px;
+    }
+
+    .keyboard-row {
+        gap: 5px;
+    }
+
+    .key-btn {
+        max-width: 100%;
+        padding: 10px 5px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    .delete-btn, .clear-btn {
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        padding: 10px;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+
+    /* Content Page */
+    #contentPage {
+        padding: 15px 10px;
+    }
+
+    .content-box {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .content-box h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .content-box p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .image-slider {
+        height: 240px;
+        max-width: 100%;
+    }
+
+    .image-placeholder {
+        font-size: 24px;
+    }
+
+    .swipe-hint {
+        font-size: 11px;
+        bottom: 8px;
+        right: 8px;
+    }
+
+    .back-btn {
+        padding: 7px 12px;
+        font-size: 11px;
+        bottom: 8px;
+        left: 8px;
+    }
+}
+
+/* Landscape mode */
+@media (max-width: 768px) and (orientation: landscape) {
+    .password-form {
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .password-input {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .keyboard {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .key-btn {
+        max-width: 50px;
+        padding: 8px 5px;
+        font-size: 13px;
+    }
+
+    /* Content Page */
+    #contentPage {
+        padding: 15px;
+    }
+
+    .content-container {
+        flex-direction: row;
+        gap: 15px;
+        max-height: calc(100vh - 60px);
+    }
+
+    .image-slider {
+        height: auto;
+        min-height: 250px;
+    }
+}
