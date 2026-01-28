@@ -297,7 +297,7 @@ body {
 
 /* Bên phải - Ảnh (40%) */
 .image-right {
-    flex: 4;
+    flex: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -307,7 +307,7 @@ body {
 .image-slider {
     position: relative;
     width: 100%;
-    height: 900px;
+    height: 600px;
     perspective: 1000px;
 }
 
